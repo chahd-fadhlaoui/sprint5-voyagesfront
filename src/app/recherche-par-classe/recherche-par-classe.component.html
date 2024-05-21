@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <label>Classes </label>
+        <select class="form-control form-control-lg" id="idCl" name="idCl" [(ngModel)]="idCl"
+            (change)="onChange()">
+            <option *ngFor="let cl of classes" value="{{cl.idCl}}">
+                {{cl.nomCl}}
+            </option>
+        </select>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Date </th>
+                        <th>Classe</th>
+                    </tr>
+
+                </thead>
+                <tbody *ngFor="let voyage of voyages">
+                    <tr>
+                        <td>{{voyage.idVoyage}}</td>
+                        <td>{{voyage.nomVoyage}}</td>
+                        <td>{{voyage.prixVoyage}}</td>
+                        <td>{{voyage.dateVoyage | date:'dd/MM/yyyy'}}</td>
+                        <td>{{voyage.classe?.nomCl}}</td>
+
+                       <!--  <td><a class="btn btn-danger" (click)="supprimerVoyage!(voyage)">Supprimer</a></td>
+                        <td><a class="btn btn-success" [routerLink]="['/updateVoyage', voyage.idVoyage]">Modifier</a>
+                        </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

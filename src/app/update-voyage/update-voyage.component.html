@@ -1,0 +1,37 @@
+<div class="container">
+    <div>
+        <h2>Modifier un Voyage :</h2>
+    </div>
+    <form>
+        <div  class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Voyage</label>
+            <input readonly type="text" [(ngModel)]="currentVoyage.idVoyage" name="idVoyage" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Nom Voyage</label>
+            <input type="text" [(ngModel)]="currentVoyage.nomVoyage" name="nomVoyage" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Prix Voyage</label>
+            <input type="number" [(ngModel)]="currentVoyage.prixVoyage" name="prixVoyage" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Date voyage</label>
+            <input type="date" [ngModel]="currentVoyage.dateVoyage | date: 'yyyy-MM-dd'"
+                (ngModelChange)="currentVoyage.dateVoyage= $event" name="dateVoyage" class="form-control">
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>classe</label>
+            <select class="form-control form-control-lg" id="idCl" name="idCl" [(ngModel)]="updatedClId">
+                <option *ngFor="let cl of classes" [value]="cl.idCl">
+                    {{cl.nomCl}}
+                </option>
+            </select>
+        </div>
+        <div class="mt-2">
+            <button type="submit" (click)="updateVoyage()" class="btn btn-success"
+                [routerLink]="['/updateVoyage', currentVoyage.idVoyage]">Modifier</button>
+        </div>
+    </form>
+    </div>

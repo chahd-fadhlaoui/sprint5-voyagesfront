@@ -1,0 +1,55 @@
+<div class="container">
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+        <label>Nom Voyage en tapant</label>
+        <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control" >
+        </div>
+        </form>
+    
+
+
+
+
+   <!--  <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2">
+          <label>Nom Voyage en tapant</label>
+          <input class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+        </div>
+      </form> -->
+      
+   
+   
+   
+   
+    <!--  <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+        <label>Nom Voyage</label>
+        <input type="text" class="form-control" [(ngModel)]="nomVoyage" name="nomProduit" class="form-control">
+        <button type="submit" (click)="rechercherVoyas()" class="btn btn-primary mb-2 ml-2">Rechercher</button>
+        </div>
+        </form> -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                    <tr><th>Id</th><th>Nom</th><th>Prix</th> <th>Date </th><th>Classe</th>
+                </tr>
+                
+            </thead>
+                <tbody *ngFor="let voyage of voyages | searchFilter: searchTerm">
+                    <tr>
+                        <td>{{voyage.idVoyage}}</td>
+                        <td>{{voyage.nomVoyage}}</td>
+                        <td>{{voyage.prixVoyage}}</td>
+                        <td>{{voyage.dateVoyage | date:'dd/MM/yyyy'}}</td>
+                        <td>{{voyage.classe?.nomCl}}</td>
+
+                        <!--  <td><a class="btn btn-danger" (click)="supprimerVoyage!(voyage)">Supprimer</a></td>
+                        <td><a class="btn btn-success" [routerLink]="['/updateVoyage', voyage.idVoyage]">Modifier</a>
+                        </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
