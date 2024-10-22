@@ -17,28 +17,33 @@ export class VoyagesComponent implements OnInit {
     public authService: AuthService) { }
 
   ngOnInit(): void {
-   this.chargerVoyages();
-
+    this.chargerVoyages();
   }
-  chargerVoyages(){
-  this.voyageService.listeVoyage().subscribe(voya => {
-    console.log(voya);
-    this.voyages = voya;
-  });
-}
-supprimerVoyage(v: Voyage) {
-  let conf = confirm("Etes-vous sûr ?");
-  if (conf) {
-    this.voyageService.supprimerVoyage(v.idVoyage!).subscribe(() => {
-      console.log("Voyage supprimé");
-      this.chargerVoyages(); 
 
+  chargerVoyages(): void {
+    this.voyageService.listeVoyage().subscribe({
+      next: (voya) => {
+        console.log(voya);
+        this.voyages = voya;
+      },
+      error: (err) => {
+        console.error("Erreur lors du chargement des voyages:", err);
+      }
     });
-
   }
-}
 
-
-
-
+  supprimerVoyage(v: Voyage): void {
+    let conf = confirm("Etes-vous sûr ?");
+    if (conf) {
+      this.voyageService.supprimerVoyage(v.idVoyage!).subscribe({
+        next: () => {
+          console.log("Voyage supprimé");
+          this.chargerVoyages();
+        },
+        error: (err) => {
+          console.error("Erreur lors de la suppression du voyage:", err);
+        }
+      });
+    }
+  }
 }

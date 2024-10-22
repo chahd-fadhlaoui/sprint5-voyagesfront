@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { user } from '../model/User.model';
+import { User } from '../model/User.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  public user = new user();
+  public user = new User();
 
 confirmPassword?:string;
 

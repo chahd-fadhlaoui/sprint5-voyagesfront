@@ -29,9 +29,9 @@ import { ClasseWrapper } from '../model/classeWrapped.model';
     }
     listeVoyage(): Observable<Voyage[]>{
       let jwt = this.authService.getToken();
-      jwt = "Bearer "+jwt;
-      let httpHeaders = new HttpHeaders({"Authorization":jwt})
-      return this.http.get<Voyage[]>(this.apiURL+"/all",{headers:httpHeaders});
+       jwt = "Bearer "+jwt; 
+       let httpHeaders = new HttpHeaders({"Authorization":jwt})
+        return this.http.get<Voyage[]>(this.apiURL+"/all",{headers:httpHeaders});
       }
       
       ajouterVoyage( voya: Voyage):Observable<Voyage>{
@@ -87,8 +87,9 @@ import { ClasseWrapper } from '../model/classeWrapped.model';
   }
     
     rechercherParClasse(idCl: number): Observable<Voyage[]> {
-      const url = `${this.apiURL}/voyagescl/${idCl}`;
-      return this.http.get<Voyage[]>(url);
+      let token = this.authService.getToken();
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      return this.http.get<Voyage[]>(`${this.apiURL}/voyagescl/${idCl}`, { headers });
     }
     rechercherParNom(nom: string):Observable< Voyage[]> {
       const url = `${this.apiURL}/voyagesByName/${nom}`;

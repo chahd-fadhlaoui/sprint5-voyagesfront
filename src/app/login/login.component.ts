@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { user } from '../model/User.model';
+import { User } from '../model/User.model';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   ]
 })
 export class LoginComponent implements OnInit {
-  user = new user();
+  user = new User();
   err :number=0;
 
   constructor(private authService : AuthService,
